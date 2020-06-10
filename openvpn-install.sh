@@ -452,20 +452,26 @@ function installQuestions() {
 		2)
 			echo ""
 			echo "Choose which size you want to use for the certificate's RSA key:"
-			echo "   1) 2048 bits (recommended)"
-			echo "   2) 3072 bits"
-			echo "   3) 4096 bits"
-			until [[ $RSA_KEY_SIZE_CHOICE =~ ^[1-3]$ ]]; do
-				read -rp "RSA key size [1-3]: " -e -i 1 RSA_KEY_SIZE_CHOICE
+			echo "   1) 1024 bits (recommended)"
+			echo "   2) 2048 bits"
+			echo "   3) 3072 bits"
+			echo "   4) 4096 bits"
+			
+			until [[ $RSA_KEY_SIZE_CHOICE =~ ^[1-4]$ ]]; do
+				read -rp "RSA key size [1-4]: " -e -i 1 RSA_KEY_SIZE_CHOICE
 			done
 			case $RSA_KEY_SIZE_CHOICE in
 			1)
+				RSA_KEY_SIZE="1024"
+				;;
+			
+			2)
 				RSA_KEY_SIZE="2048"
 				;;
-			2)
+			3)
 				RSA_KEY_SIZE="3072"
 				;;
-			3)
+			4)
 				RSA_KEY_SIZE="4096"
 				;;
 			esac
